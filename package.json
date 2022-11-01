@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
+    "android": "source ~/.bash_profile&&react-native run-android",
+    "ios_13ProMax": "react-native run-ios --udid 9FF01F3E-AE47-44D8-B9E1-1F76B6537F25",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",

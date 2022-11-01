@@ -1,6 +1,8 @@
 enum Pages {
   // Auth
-  HOME = 'Home',
+  PERMISSIONS = 'Permissions',
+  CAMERA = 'Camera',
+  MEDIA = 'Media',
 }
 
 export default Pages;

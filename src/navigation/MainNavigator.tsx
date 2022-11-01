@@ -1,24 +1,24 @@
 import React from 'react';
 import {Pages} from '@utils/index';
 import {createStackNavigator} from '@react-navigation/stack';
-
 // * Screens
-import {Home} from '@screens/index';
+import {CameraPage} from '@screens/index';
 import {RootStackParamList} from 'types/navigation';
 
 const RootStack = createStackNavigator<RootStackParamList>();
 
 const MainNavigator = () => {
-  const {HOME} = Pages;
+  const {CAMERA} = Pages;
+
   return (
-    <RootStack.Navigator initialRouteName={HOME}>
-      <RootStack.Group
-        screenOptions={{
-          headerShown: false,
-          gestureEnabled: false,
-        }}>
-        <RootStack.Screen name={HOME} component={Home} />
-      </RootStack.Group>
+    <RootStack.Navigator
+      screenOptions={{
+        headerShown: false,
+        animationTypeForReplace: 'push',
+      }}
+      initialRouteName={CAMERA}>
+      {/* <RootStack.Screen name={PERMISSIONS} component={Permissions} /> */}
+      <RootStack.Screen name={CAMERA} component={CameraPage} />
     </RootStack.Navigator>
   );
 };

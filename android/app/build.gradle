@@ -1,5 +1,7 @@
 apply plugin: "com.android.application"
 
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+
 import com.android.build.OutputFile
 import org.apache.tools.ant.taskdefs.condition.Os
 
@@ -218,6 +220,7 @@ android {
             keyPassword 'android'
         }
     }
+    namespace 'com.platereader'
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
@@ -255,6 +258,8 @@ dependencies {
     implementation "com.facebook.react:react-native:+"  // From node_modules
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+
+    implementation project(':react-native-vector-icons')
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
         exclude group:'com.facebook.fbjni'

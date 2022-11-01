@@ -1,6 +1,7 @@
 import {Pages} from '@utils/index';
-const {HOME} = Pages;
+const {CAMERA, PERMISSIONS} = Pages;
 
 export type RootStackParamList = {
-  [HOME]: undefined;
+  [CAMERA]: undefined;
+  [PERMISSIONS]: undefined;
 };

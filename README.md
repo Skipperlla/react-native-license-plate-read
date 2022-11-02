@@ -17,23 +17,18 @@ cd react-native-license-plate-read
 npm install
 ```
 
-2. Android for Windows
+# IOS
 
-```bash
-yarn android or npm run android
-```
+1. Open the react-native-license-plate-read/ios/PlateReader.xcworkspace file with Xcode
+2. Change signing configuration to your developer account
+3. Select your device in the devices drop-down
+4. Hit run
 
-3.  Ios for MacOS
+# Android
 
-```bash
-yarn ios or npm run ios
-```
-
-3. Android for MacOS
-
-```bash
-yarn android:ios or npm run android:ios
-```
+1. Open the react-native-license-plate-read/android/ folder with Android Studio
+2. Select your device in the devices drop-down
+3. Hit run
 
 > **_NOTE:_** If you put the application in debugger mode, the application will not run and you cannot use it due to an error from react-native-vision-camera.
 

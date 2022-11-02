@@ -35,6 +35,8 @@ yarn ios or npm run ios
 yarn android:ios or npm run android:ios
 ```
 
+> **_NOTE:_** If you put the application in debugger mode, the application will not run and you cannot use it due to an error from react-native-vision-camera.
+
 # Notes
 
 Since **yarn android** does not work on my own computer, I wrote an external script myself. If **yarn android** does not work for you, try **yarn android:ios**

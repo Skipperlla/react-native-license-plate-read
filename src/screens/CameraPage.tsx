@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
   View,
@@ -17,11 +17,17 @@ import {runOnJS} from 'react-native-reanimated';
 import Pages from '@utils/pages';
 import {StackScreenProps} from '@react-navigation/stack';
 import {RootStackParamList} from 'types/navigation';
-type Props = StackScreenProps<RootStackParamList, Pages.PERMISSIONS>;
+import {getBottomSpace} from 'react-native-iphone-x-helper';
+import {Size} from '@assets/styles';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+type Props = StackScreenProps<RootStackParamList, Pages.CAMERA>;
 
 const CameraPage = ({navigation}: Props): React.ReactElement => {
-  const [hasPermission, setHasPermission] = React.useState(false);
-  const [isCameraActive, setIsCameraActive] = React.useState(true);
+  const [hasPermission, setHasPermission] = useState(false);
+  const [isCameraActive, setIsCameraActive] = useState(true);
+  const [isFlashActive, setIsFlashActive] = useState<string>('off');
+
   const [ocr, setOcr] = React.useState<OCRFrame>();
   const devices = useCameraDevices();
   const device = devices.back;
@@ -38,6 +44,38 @@ const CameraPage = ({navigation}: Props): React.ReactElement => {
       setHasPermission(status === 'authorized');
     })();
   }, []);
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => {
+        return (
+          <View style={{paddingRight: Size.padding, flexDirection: 'row'}}>
+            <TouchableOpacity
+              onPress={() => {
+                if (isFlashActive === 'on') setIsFlashActive('off');
+                else setIsFlashActive('on');
+              }}
+              style={{
+                marginRight: Size.margin,
+              }}>
+              <Ionicons
+                name={isFlashActive === 'on' ? 'flash' : 'flash-off'}
+                size={Size.iconSize}
+                color={'black'}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => {}}>
+              <AntDesign
+                name={'questioncircle'}
+                size={Size.iconSize}
+                color={'black'}
+              />
+            </TouchableOpacity>
+          </View>
+        );
+      },
+    });
+  }, [navigation, isFlashActive]);
+
   const RenderOverlay = () => {
     return (
       <>
@@ -81,48 +119,52 @@ const CameraPage = ({navigation}: Props): React.ReactElement => {
       </>
     );
   };
-  // console.log('hasPermission', hasPermission);
-  // console.log('device', device);
-  return false && device !== undefined && hasPermission ? (
+  return device !== undefined && hasPermission ? (
     <>
       <Camera
         style={[StyleSheet.absoluteFill]}
         frameProcessor={frameProcessor}
         device={device}
-        isActive={isCameraActive}
+        isActive={true}
         enableZoomGesture
-        enablePinchToZoom
-        enableTapToFocus
-        enableExposureGesture
-        enableAutoFocus
-        enableAutoExposure
-        enableAutoWhiteBalance
-        enableAutoFrameRate
-        enableAutoHDR
-        enableAutoVideoStabilization
-        enableAutoDepthDataDelivery
-        enableAutoPortraitEffectsMatteDelivery
-        enableAutoSemanticSegmentationMatteDelivery
-        enableAutoLowLightBoost
-        enableAutoOpticalImageStabilization
-        enableAutoPhotoQualityPrioritization
-        enableAutoDualCameraFusion
-        enableAutoRedEyeReduction
-        enableAutoFaceDetection
-        enableAutoFaceTracking
-        enableAutoBodyDetection
-        hasF
+        torch={isFlashActive}
         frameProcessorFps={5}
       />
       {<RenderOverlay />}
     </>
   ) : (
-    <SafeAreaView
-      style={{
-        flexDirection: '',
-      }}>
-      <Text>No Camera</Text>
-    </SafeAreaView>
+    <>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+
+          backgroundColor: 'black',
+        }}>
+        <View
+          style={{
+            flex: 1,
+            width: '100%',
+
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: 'red',
+          }}>
+          <Text>No Camera</Text>
+        </View>
+        <View
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: 'blue',
+            marginBottom: getBottomSpace(),
+            width: '100%',
+          }}>
+          <Text>No Camera</Text>
+        </View>
+      </View>
+    </>
   );
 };
 

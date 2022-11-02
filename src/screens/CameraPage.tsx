@@ -8,6 +8,8 @@ import {
   Alert,
   Text,
   LayoutChangeEvent,
+  Dimensions,
+  SafeAreaView,
 } from 'react-native';
 import {useSharedValue} from 'react-native-reanimated';
 import {
@@ -20,6 +22,7 @@ import {OCRFrame, scanOCR} from 'vision-camera-ocr';
 import {runOnJS} from 'react-native-reanimated';
 
 import {Label} from '@components/index';
+
 const CameraPage = () => {
   const [hasPermission, setHasPermission] = React.useState(false);
   const [ocr, setOcr] = React.useState<OCRFrame>();
@@ -50,13 +53,12 @@ const CameraPage = () => {
               {block.text.match(regex) ? (
                 <TouchableOpacity
                   onPress={() => {
-                    // Clipboard.setString(block.text);
                     Alert.alert(`"${block.text}" copied to the clipboard`);
                   }}
                   style={{
                     position: 'absolute',
-                    // left: block.frame.x * pixelRatio,
-                    // top: block.frame.y * pixelRatio,
+                    left: 200,
+                    top: 200,
                     backgroundColor: 'white',
                     padding: 8,
                     borderRadius: 6,
@@ -77,9 +79,17 @@ const CameraPage = () => {
       </>
     );
   };
-  return device !== undefined && hasPermission ? (
+  console.log('hasPermission', hasPermission);
+  console.log('device', device);
+  return false && device !== undefined && hasPermission ? (
     <>
-      <Camera
+      <SafeAreaView
+        style={{
+          flexDirection: '',
+        }}>
+        <Text>null</Text>
+      </SafeAreaView>
+      {/* <Camera
         style={[StyleSheet.absoluteFill]}
         frameProcessor={frameProcessor}
         device={device}
@@ -94,12 +104,15 @@ const CameraPage = () => {
           );
         }}
       />
-      {renderOverlay()}
+      {renderOverlay()} */}
     </>
   ) : (
-    <View>
-      <Text>No available cameras</Text>
-    </View>
+    <SafeAreaView
+      style={{
+        flexDirection: '',
+      }}>
+      <Text>No Camera</Text>
+    </SafeAreaView>
   );
 };
 

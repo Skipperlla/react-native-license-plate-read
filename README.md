@@ -4,7 +4,7 @@ This license plate reader is an application that displays the license plates of 
 
 # 🚀 Demo
 
-![](https://im3.ezgif.com/tmp/ezgif-3-0a73e013d4.gif)
+![](https://media.giphy.com/media/lHFziIsBdO1glJrMIC/giphy.gif)
 
 # How to use
 

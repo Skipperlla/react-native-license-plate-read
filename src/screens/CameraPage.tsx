@@ -26,7 +26,6 @@ import {Label} from '@components/index';
 const CameraPage = () => {
   const [hasPermission, setHasPermission] = React.useState(false);
   const [ocr, setOcr] = React.useState<OCRFrame>();
-  const [pixelRatio, setPixelRatio] = React.useState<number>(1);
   const devices = useCameraDevices();
   const device = devices.back;
 
@@ -42,7 +41,7 @@ const CameraPage = () => {
       setHasPermission(status === 'authorized');
     })();
   }, []);
-  const renderOverlay = () => {
+  const RenderOverlay = () => {
     return (
       <>
         {ocr?.result.blocks.map((block, index) => {
@@ -81,30 +80,16 @@ const CameraPage = () => {
   };
   console.log('hasPermission', hasPermission);
   console.log('device', device);
-  return false && device !== undefined && hasPermission ? (
+  return device !== undefined && hasPermission ? (
     <>
-      <SafeAreaView
-        style={{
-          flexDirection: '',
-        }}>
-        <Text>null</Text>
-      </SafeAreaView>
-      {/* <Camera
+      <Camera
         style={[StyleSheet.absoluteFill]}
         frameProcessor={frameProcessor}
         device={device}
         isActive={true}
         frameProcessorFps={5}
-        onLayout={(event: LayoutChangeEvent) => {
-          setPixelRatio(
-            event.nativeEvent.layout.width /
-              PixelRatio.getPixelSizeForLayoutSize(
-                event.nativeEvent.layout.width,
-              ),
-          );
-        }}
       />
-      {renderOverlay()} */}
+      {<RenderOverlay />}
     </>
   ) : (
     <SafeAreaView

@@ -19,14 +19,14 @@ npm install
 
 # IOS
 
-1. Open the react-native-license-plate-read/ios/PlateReader.xcworkspace file with Xcode
+1. Open the `react-native-license-plate-read/ios/PlateReader.xcworkspace` file with Xcode
 2. Change signing configuration to your developer account
 3. Select your device in the devices drop-down
 4. Hit run
 
 # Android
 
-1. Open the react-native-license-plate-read/android/ folder with Android Studio
+1. Open the `react-native-license-plate-read/android/` folder with Android Studio
 2. Select your device in the devices drop-down
 3. Hit run
 
@@ -67,7 +67,7 @@ a Line is a contiguous set of words on the same axis, and
 an Element is a contiguous set of alphanumeric characters ("word") on the same axis in most Latin languages, or a character in others
 ```
 
-# Features
+# Future Features
 
 - [ ] Flash support for night use
 - [ ] Zoom

@@ -5,14 +5,8 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {CameraPage, PermissionsPage, PlateInfo} from '@screens/index';
 import {RootStackParamList} from 'types/navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import {Camera, CameraPermissionStatus} from 'react-native-vision-camera';
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-} from 'react-native';
+import {Text, View, TouchableOpacity} from 'react-native';
 import {Size} from '@assets/styles';
 
 const RootStack = createStackNavigator<RootStackParamList>();
@@ -48,7 +42,6 @@ const MainNavigator = () => {
         options={{
           headerShown: true,
           headerTitleAlign: 'left',
-          headerTitleContainerStyle: {},
           headerTitle: () => {
             return (
               <View

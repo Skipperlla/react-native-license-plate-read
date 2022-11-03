@@ -10,6 +10,7 @@ import React, {FC, useEffect, useState} from 'react';
 import {Colors, Size} from '@assets/styles';
 import {useNavigation} from '@react-navigation/native';
 import Pages from '@utils/pages';
+import {useAppNavigation} from '@utils/hooks';
 const AVATAR_WIDTH = 250;
 const AVATAR_HEIGHT = 250;
 interface IUser {
@@ -111,7 +112,7 @@ const Table: FC<ITable> = ({value, title}) => {
   );
 };
 const NotFound = () => {
-  const navigation = useNavigation();
+  const navigation = useAppNavigation();
   return (
     <View
       style={{
@@ -122,7 +123,9 @@ const NotFound = () => {
       <Text style={{fontSize: 20}}>Boyle bir kullanici bulunamadi!!</Text>
       <TouchableOpacity
         style={{...style.button, marginTop: Size.margin}}
-        onPress={() => navigation.navigate(Pages.REGISTER_PLATE)}>
+        onPress={() => {
+          navigation.navigate(Pages.REGISTER_PLATE);
+        }}>
         <Text>Kaydet</Text>
       </TouchableOpacity>
     </View>

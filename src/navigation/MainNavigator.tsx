@@ -10,10 +10,7 @@ import {
   SelectType,
 } from '@screens/index';
 import {RootStackParamList} from 'types/navigation';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Camera, CameraPermissionStatus} from 'react-native-vision-camera';
-import {Text, View, TouchableOpacity} from 'react-native';
-import {Size} from '@assets/styles';
 
 const RootStack = createStackNavigator<RootStackParamList>();
 
@@ -40,8 +37,7 @@ const MainNavigator = () => {
         headerShown: false,
         animationTypeForReplace: 'push',
       }}
-      initialRouteName={PLATE_INFO}>
-      {/* showPermissionsPage ? PERMISSIONS : CAMERA */}
+      initialRouteName={showPermissionsPage ? PERMISSIONS : SELECT_TYPE}>
       <RootStack.Screen name={PERMISSIONS} component={PermissionsPage} />
       <RootStack.Screen
         name={CAMERA}

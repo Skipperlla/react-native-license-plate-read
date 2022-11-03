@@ -8,7 +8,7 @@ import {CONTENT_SPACING, SAFE_AREA_PADDING} from '@utils/constants';
 import Pages from '@utils/pages';
 import {RootStackParamList} from 'types/navigation';
 
-type Props = StackScreenProps<RootStackParamList, Pages.PERMISSIONS>;
+type Props = StackScreenProps<RootStackParamList>;
 const PermissionsPage = ({navigation}: Props): React.ReactElement => {
   const [cameraPermissionStatus, setCameraPermissionStatus] =
     useState<CameraPermissionStatus>('not-determined');

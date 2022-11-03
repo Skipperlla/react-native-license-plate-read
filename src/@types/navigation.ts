@@ -6,7 +6,7 @@ export type RootStackParamList = {
   [CAMERA]: undefined;
   [MEDIA]: undefined;
   [PERMISSIONS]: undefined;
-  [PLATE_INFO]: undefined;
+  [PLATE_INFO]: {plate: string};
   [SELECT_TYPE]: undefined;
   [REGISTER_PLATE]: undefined;
 };

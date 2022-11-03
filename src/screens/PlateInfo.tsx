@@ -6,9 +6,8 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useState} from 'react';
 import {Colors, Size} from '@assets/styles';
-import {useNavigation} from '@react-navigation/native';
 import Pages from '@utils/pages';
 import {useAppNavigation} from '@utils/hooks';
 const AVATAR_WIDTH = 250;

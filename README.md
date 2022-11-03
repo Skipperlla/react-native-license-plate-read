@@ -69,12 +69,23 @@ an Element is a contiguous set of alphanumeric characters ("word") on the same a
 
 # Future Features
 
-- [ ] Flash support for night use
-- [ ] Zoom
+- [x] Flash support for night use
+- [x] Zoom
 - [ ] License plate recognition by selecting photos from the library
 - [ ] If there is a matching license plate in the database, displaying the information of that person
 - [ ] More optimized code structure
 
+## Author
+
+👤 **Skipperlla**
+
+- Twitter: [@Skipperlla](https://twitter.com/Skipperlla)
+- Github: [@Skipperlla](https://github.com/Skipperlla)
+
 ## Show your support
 
 Give a ⭐️ if this project helped you!
+
+# LICENSE
+
+[MIT](https://github.com/Skipperlla/react-native-license-plate-read/blob/main/LICENSE)

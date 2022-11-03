@@ -1,8 +1,12 @@
 import {Pages} from '@utils/index';
-const {CAMERA, PERMISSIONS, PLATE_INFO} = Pages;
+const {CAMERA, PERMISSIONS, MEDIA, PLATE_INFO, SELECT_TYPE, REGISTER_PLATE} =
+  Pages;
 
 export type RootStackParamList = {
   [CAMERA]: undefined;
+  [MEDIA]: undefined;
   [PERMISSIONS]: undefined;
   [PLATE_INFO]: undefined;
+  [SELECT_TYPE]: undefined;
+  [REGISTER_PLATE]: undefined;
 };

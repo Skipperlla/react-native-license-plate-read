@@ -1,12 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {
-  StyleSheet,
-  View,
-  TouchableOpacity,
-  Alert,
-  Text,
-  SafeAreaView,
-} from 'react-native';
+import React, {useEffect, useState, useLayoutEffect} from 'react';
+import {StyleSheet, View, TouchableOpacity, Alert, Text} from 'react-native';
 import {
   Camera,
   useCameraDevices,
@@ -17,18 +10,17 @@ import {runOnJS} from 'react-native-reanimated';
 import Pages from '@utils/pages';
 import {StackScreenProps} from '@react-navigation/stack';
 import {RootStackParamList} from 'types/navigation';
-import {getBottomSpace} from 'react-native-iphone-x-helper';
 import {Size} from '@assets/styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 type Props = StackScreenProps<RootStackParamList, Pages.CAMERA>;
 
 const CameraPage = ({navigation}: Props): React.ReactElement => {
-  const [hasPermission, setHasPermission] = useState(false);
-  const [isCameraActive, setIsCameraActive] = useState(true);
-  const [isFlashActive, setIsFlashActive] = useState<string>('off');
-
-  const [ocr, setOcr] = React.useState<OCRFrame>();
+  // * Hooks
+  const [isFlashActive, setIsFlashActive] = useState<'off' | 'on' | undefined>(
+    'off',
+  );
+  const [ocr, setOcr] = useState<OCRFrame>();
   const devices = useCameraDevices();
   const device = devices.back;
 
@@ -38,13 +30,7 @@ const CameraPage = ({navigation}: Props): React.ReactElement => {
     runOnJS(setOcr)(data);
   }, []);
 
-  React.useEffect(() => {
-    (async () => {
-      const status = await Camera.requestCameraPermission();
-      setHasPermission(status === 'authorized');
-    })();
-  }, []);
-  React.useLayoutEffect(() => {
+  useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => {
         return (
@@ -84,7 +70,6 @@ const CameraPage = ({navigation}: Props): React.ReactElement => {
             /^(0[1-9]|[1-7][0-9]|8[01])((\s?[a-zA-Z]\s?)(\d{4,5})|(\s?[a-zA-Z]{2}\s?)(\d{3,4})|(\s?[a-zA-Z]{3}\s?)(\d{2,3}))$/gm;
           useEffect(() => {
             if (block.text.match(regex)) {
-              setIsCameraActive(false);
               navigation.navigate(Pages.PLATE_INFO);
             }
           }, []);
@@ -119,10 +104,15 @@ const CameraPage = ({navigation}: Props): React.ReactElement => {
       </>
     );
   };
-  return device !== undefined && hasPermission ? (
+  return (
     <>
       <Camera
-        style={[StyleSheet.absoluteFill]}
+        style={[
+          StyleSheet.absoluteFill,
+          {
+            flex: 1,
+          },
+        ]}
         frameProcessor={frameProcessor}
         device={device}
         isActive={true}
@@ -130,54 +120,9 @@ const CameraPage = ({navigation}: Props): React.ReactElement => {
         torch={isFlashActive}
         frameProcessorFps={5}
       />
-      {<RenderOverlay />}
-    </>
-  ) : (
-    <>
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-
-          backgroundColor: 'black',
-        }}>
-        <View
-          style={{
-            flex: 1,
-            width: '100%',
-
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: 'red',
-          }}>
-          <Text>No Camera</Text>
-        </View>
-        <View
-          style={{
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: 'blue',
-            marginBottom: getBottomSpace(),
-            width: '100%',
-          }}>
-          <Text>No Camera</Text>
-        </View>
-      </View>
+      <PlateTextRenderOverlay />
     </>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'red',
-  },
-  camera: {
-    flex: 1,
-    width: '100%',
-  },
-});
 export default CameraPage;

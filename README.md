@@ -1,6 +1,6 @@
 # React Native License Plate Read
 
-This license plate reader is an application that displays the license plates of the cars on the screen.
+This license plate reader is an application that gives personal information of people if they have license plate data registered in the database.
 
 # 🚀 Demo
 
@@ -72,8 +72,8 @@ an Element is a contiguous set of alphanumeric characters ("word") on the same a
 - [x] Flash support for night use
 - [x] Zoom
 - [ ] License plate recognition by selecting photos from the library
-- [ ] If there is a matching license plate in the database, displaying the information of that person
-- [ ] More optimized code structure
+- [ ] If there is a matching license plate in the database, displaying the information of that person 🚧
+- [x] More optimized code structure
 
 ## Author
 

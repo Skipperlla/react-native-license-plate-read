@@ -22,7 +22,8 @@
       "@screens/*": ["./src/screens/*"],
       "@store/*": ["src/store/*"],
       "@new_store/*": ["src/new-store/*"],
-      "@utils/*": ["./src/utils/*"]
+      "@utils/*": ["./src/utils/*"],
+      "@config/*": ["./src/config/*"]
     },
     "resolveJsonModule": true
   },

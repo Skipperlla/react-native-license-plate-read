@@ -2,6 +2,17 @@ module.exports = {
   presets: ['module:metro-react-native-babel-preset'],
   plugins: [
     [
+      'module:react-native-dotenv',
+      {
+        envName: 'APP_ENV',
+        moduleName: '@dotenv',
+        path: '.env',
+        safe: false,
+        allowUndefined: true,
+        verbose: false,
+      },
+    ],
+    [
       'react-native-reanimated/plugin',
       {
         globals: ['__scanOCR'],
@@ -25,6 +36,7 @@ module.exports = {
           '@utils': './src/utils',
           '@features': './src/features',
           '@new_store': './src/new-store',
+          '@config': './src/config',
         },
       },
     ],

@@ -1,12 +1,32 @@
-import {Text, SafeAreaView, TouchableOpacity, StyleSheet} from 'react-native';
-import React from 'react';
+import {
+  Text,
+  SafeAreaView,
+  TouchableOpacity,
+  StyleSheet,
+  Linking,
+  Alert,
+} from 'react-native';
+import React, {useCallback, useState} from 'react';
 import {Colors, Size} from '@assets/styles';
 import Pages from '@utils/pages';
 import {RootStackParamList} from 'types/navigation';
 import {StackScreenProps} from '@react-navigation/stack';
+import {Camera, CameraPermissionStatus} from 'react-native-vision-camera';
 type Props = StackScreenProps<RootStackParamList, Pages.SELECT_TYPE>;
 
 const SelectType = ({navigation}: Props) => {
+  const [cameraPermissionStatus, setCameraPermissionStatus] =
+    useState<CameraPermissionStatus>('not-determined');
+
+  const requestCameraPermission = useCallback(async () => {
+    console.log('Requesting camera permission...');
+    const permission = await Camera.requestCameraPermission();
+    console.log(`Camera permission status: ${permission}`);
+
+    if (permission === 'denied') await Linking.openSettings();
+    setCameraPermissionStatus(permission);
+  }, []);
+
   return (
     <SafeAreaView
       style={{
@@ -16,13 +36,20 @@ const SelectType = ({navigation}: Props) => {
         flexDirection: 'row',
       }}>
       <TouchableOpacity
-        onPress={() => navigation.navigate(Pages.CAMERA)}
+        onPress={() => {
+          if (cameraPermissionStatus === 'authorized')
+            navigation.navigate(Pages.CAMERA);
+          else requestCameraPermission();
+        }}
         style={{...style.button, marginRight: Size.margin}}>
         <Text>Camera</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={style.button}
-        onPress={() => navigation.navigate(Pages.MEDIA)}>
+        onPress={() => {
+          Alert.alert('Coming soon');
+          // navigation.navigate(Pages.MEDIA);
+        }}>
         <Text>Media</Text>
       </TouchableOpacity>
     </SafeAreaView>

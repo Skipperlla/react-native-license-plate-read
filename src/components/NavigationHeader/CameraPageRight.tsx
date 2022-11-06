@@ -1,10 +1,8 @@
-import {View, TouchableOpacity} from 'react-native';
-import React from 'react';
-import {Size} from '@assets/styles';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import {FC} from 'react';
+import {View, TouchableOpacity, StyleSheet} from 'react-native';
+import React, {FC} from 'react';
 import {FlashActiveProps} from '@screens/CameraPage';
+import {rs} from '@utils/index';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 interface ICameraPageRight {
   isFlashActive: FlashActiveProps;
   setIsFlashActive: React.Dispatch<React.SetStateAction<FlashActiveProps>>;
@@ -14,25 +12,21 @@ const CameraPageRight: FC<ICameraPageRight> = ({
   setIsFlashActive,
 }) => {
   return (
-    <View style={{paddingRight: Size.padding, flexDirection: 'row'}}>
+    <View style={styles.wrapper}>
       <TouchableOpacity
         onPress={() => {
-          if (isFlashActive === 'on') setIsFlashActive('off');
-          else setIsFlashActive('on');
+          if (isFlashActive === 'on') {
+            setIsFlashActive('off');
+          } else {
+            setIsFlashActive('on');
+          }
         }}
         style={{
-          marginRight: Size.margin,
+          marginRight: rs(16),
         }}>
         <Ionicons
           name={isFlashActive === 'on' ? 'flash' : 'flash-off'}
-          size={Size.iconSize}
-          color={'black'}
-        />
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <AntDesign
-          name={'questioncircle'}
-          size={Size.iconSize}
+          size={rs(18)}
           color={'black'}
         />
       </TouchableOpacity>
@@ -40,4 +34,10 @@ const CameraPageRight: FC<ICameraPageRight> = ({
   );
 };
 
+const styles = StyleSheet.create({
+  wrapper: {
+    paddingRight: rs(16),
+    flexDirection: 'row',
+  },
+});
 export default CameraPageRight;

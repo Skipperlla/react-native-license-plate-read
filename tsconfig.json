@@ -13,15 +13,9 @@
     "baseUrl": ".",
     "paths": {
       "types/*": ["./src/@types/*"],
-      "@assets/*": ["./src/assets/*"],
       "@components/*": ["./src/components/*"],
-      "@features/*": ["./src/features/*"],
-      "@layout/*": ["./src/layout/*"],
-      "@lang/*": ["./src/lang/*"],
       "@navigation/*": ["./src/navigation/*"],
       "@screens/*": ["./src/screens/*"],
-      "@store/*": ["src/store/*"],
-      "@new_store/*": ["src/new-store/*"],
       "@utils/*": ["./src/utils/*"],
       "@config/*": ["./src/config/*"]
     },

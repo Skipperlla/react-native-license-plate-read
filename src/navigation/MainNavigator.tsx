@@ -1,34 +1,56 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Pages} from '@utils/index';
-import {createStackNavigator} from '@react-navigation/stack';
-// * Screens
-import {CameraPage, PlateInfo, RegisterPlate, SelectType} from '@screens/index';
+import {CameraPage, PlateInfo, SelectType} from '@screens/index';
 import {RootStackParamList} from 'types/navigation';
+import {createStackNavigator} from '@react-navigation/stack';
+import {Camera, CameraPermissionStatus} from 'react-native-vision-camera';
 
 const RootStack = createStackNavigator<RootStackParamList>();
 
 const MainNavigator = () => {
-  const {CAMERA, PLATE_INFO, SELECT_TYPE, REGISTER_PLATE} = Pages;
+  // * State's
+  const [cameraPermission, setCameraPermission] =
+    useState<CameraPermissionStatus>();
+
+  // * Effect's
+  useEffect(() => {
+    Camera.getCameraPermissionStatus().then(setCameraPermission);
+  }, []);
+  // * Permission's check
+  if (cameraPermission == null) {
+    return null;
+  }
+  const showPermissionsPage = cameraPermission !== 'authorized';
 
   return (
     <RootStack.Navigator
       screenOptions={{
-        headerShown: false,
-        animationTypeForReplace: 'push',
+        headerShown: true,
       }}
-      initialRouteName={SELECT_TYPE}>
+      initialRouteName={showPermissionsPage ? Pages.SELECT_TYPE : Pages.CAMERA}>
       <RootStack.Screen
-        name={CAMERA}
+        name={Pages.CAMERA}
         component={CameraPage}
         options={{
-          headerShown: true,
           headerBackTitleVisible: false,
           headerTitle: 'Scan Car Plate',
         }}
       />
-      <RootStack.Screen name={PLATE_INFO} component={PlateInfo} />
-      <RootStack.Screen name={SELECT_TYPE} component={SelectType} />
-      <RootStack.Screen name={REGISTER_PLATE} component={RegisterPlate} />
+      <RootStack.Screen
+        name={Pages.PLATE_INFO}
+        component={PlateInfo}
+        options={{
+          headerBackTitleVisible: false,
+          headerTitle: '',
+        }}
+      />
+      <RootStack.Screen
+        name={Pages.SELECT_TYPE}
+        component={SelectType}
+        options={{
+          headerShown: false,
+        }}
+      />
     </RootStack.Navigator>
   );
 };

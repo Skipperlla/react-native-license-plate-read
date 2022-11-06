@@ -65,5 +65,3 @@ buck-out/
 
 # env
 .env
-
-.bundle/

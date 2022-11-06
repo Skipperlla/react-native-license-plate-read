@@ -4,7 +4,7 @@ This license plate reader is an application that gives personal information of p
 
 # 🚀 Demo
 
-![](https://media.giphy.com/media/lHFziIsBdO1glJrMIC/giphy.gif)
+![](https://media.giphy.com/media/jrBI0EKuq1odB3kemi/giphy.gif)
 
 # How to use
 
@@ -72,7 +72,7 @@ an Element is a contiguous set of alphanumeric characters ("word") on the same a
 - [x] Flash support for night use
 - [x] Zoom
 - [ ] License plate recognition by selecting photos from the library
-- [ ] If there is a matching license plate in the database, displaying the information of that person 🚧
+- [x] If there is a matching license plate in the database, displaying the information of that person
 - [x] More optimized code structure
 
 ## Author

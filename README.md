@@ -2,6 +2,8 @@
 
 This license plate reader is an application that gives personal information of people if they have license plate data registered in the database.
 
+# There is an APK file at releases. You can try the app if you want.
+
 # 🚀 Demo
 
 ![](https://media.giphy.com/media/jrBI0EKuq1odB3kemi/giphy.gif)

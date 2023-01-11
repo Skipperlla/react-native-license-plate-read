@@ -41,16 +41,11 @@ Since **yarn android** does not work on my own computer, I wrote an external scr
 # Library Stack Importants
 
 - react-native-vision-camera
-- vision-camera-image-labeler
 - vision-camera-ocr
 
 ## **[react-native-vision-camera](https://github.com/mrousavy/react-native-vision-camera)**
 
 VisionCamera is the go-to component when creating React Native apps that require the functionality of using the device's camera. Maintained by the React Native community, this module has support for: Videos. Photographs. Face Detection and etc.
-
-## **[vision-camera-image-labeler](https://github.com/mrousavy/vision-camera-image-labeler)**
-
-A [VisionCamera](https://github.com/mrousavy/react-native-vision-camera) Frame Processor Plugin to label images using [**MLKit Vision** Image Labeling](https://developers.google.com/ml-kit/vision/image-labeling). Its main purpose is the auxiliary library that allows it to define what objects it sees from the camera.
 
 ## **[**vision-camera-ocr**](https://github.com/aarongrider/vision-camera-ocr)**
 
